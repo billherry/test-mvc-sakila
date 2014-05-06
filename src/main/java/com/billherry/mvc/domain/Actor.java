@@ -9,22 +9,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "actor")
 @Access(AccessType.FIELD)
 public class Actor {	
 	@Id
+	@Column(name = "actor_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column(unique=false, nullable=false,length=50)
+	@Column(name = "first_name", unique = false, nullable = false, length = 50)
 	private String firstName;
 	
-	@Column(unique=false, nullable=false,length=50)
+	@Column(name = "last_name", unique = false, nullable = false, length = 50)
 	private String lastName;
 	
-	@Column(unique=false, nullable=false,length=50)
+	@Column(name = "last_update", unique = false, nullable = false, length = 50)
 	private Date lastUpdate;
 	
 	@Override
@@ -63,5 +66,4 @@ public class Actor {
 	public void setLastUpdate(Date lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	} 
-		
 }

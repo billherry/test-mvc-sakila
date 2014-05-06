@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	
+	xsi:schemaLocation="
+		http://java.sun.com/xml/ns/persistence
+			http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	
+	<!-- 
+		http://docs.jboss.org/hibernate/core/4.0/hem/en-US/html/configuration.html#setup-configuration-packaging
+		persistence-unit transaction-type="RESOURCE_LOCAL" 
+	-->
+	
+	<persistence-unit name="simple">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+
+<!-- 			<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" /> -->
+<!-- 			<property name="hibernate.use_sql_comments" value="false" /> -->
+<!-- 			<property name="hibernate.query.substitutions" value="true 1, false 0" /> -->
+
+		</properties>
+	</persistence-unit>
+</persistence>

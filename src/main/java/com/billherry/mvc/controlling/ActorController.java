@@ -20,6 +20,7 @@ public class ActorController {
 	
 	@RequestMapping("select")
 	public List<Actor> findAll(){
+		System.out.println("Request mapping");
 		return service.findAll();
 	}
 	
