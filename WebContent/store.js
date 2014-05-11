@@ -1,22 +1,22 @@
 actorStore = new Ext.data.JsonStore({
 		autoDestroy : true,
 		remoteSort: true,
-		totalProperty:'total',
+		totalProperty:'Total',
 		storeId : 'myStore',
 		idProperty : 'actor_id',
-		root : 'actorList',
+		root : 'Actors',
         writer: {
             type: 'json',
             writeAllFields: false,
         },
 		proxy : new Ext.data.HttpProxy({
-			method : 'GET',
+			method : 'POST',
 			type : 'ajax',
 			api:{
-		        read : 'actors/select',
-		        create : 'actors/create',
-		        update: 'actors/update',
-		        destroy: 'actors/delete'
+		        read : 'app/actor/select.json',
+		        create : 'app/actor/create',
+		        update: 'app/actor/update',
+		        destroy: 'app/actor/delete'
 			}
 		}),
 		fields : [ {
