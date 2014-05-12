@@ -21,11 +21,13 @@ public class ActorController {
 	private ActorService service;
 	
 	@RequestMapping(value = "select")
-	public Page<Actor> findAll(@RequestParam("start") Integer start, @RequestParam("limit") Integer limit) {
-		System.out.println("Start: " + start + " Limit: " + limit);
-		return service.findAll(start, limit);
+	public Page<Actor> findAll(@RequestParam("start") Integer start, @RequestParam("limit") Integer limit,
+			@RequestParam(value = "dir", required = false) String dir,
+			@RequestParam(value = "sort", required = false) String sortBy) {
+		System.out.println("Start: " + start + " Limit: " + limit + "Dir: " + dir + " SortBy: " + sortBy);
+		return service.findAll(start, limit, dir, sortBy);
 	}
-	
+
 	@RequestMapping("create")
 	public Actor save(@Valid Actor actor){
 		return service.save(actor);
@@ -33,7 +35,6 @@ public class ActorController {
 	
 	@RequestMapping("delete")
 	public void delete(@Valid Actor actor){
-		//Update hogyan?
-		service.delete(actor.getActor_id());
+		service.delete(actor.getActorId());
 	}
 }

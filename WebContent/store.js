@@ -3,7 +3,7 @@ actorStore = new Ext.data.JsonStore({
 		remoteSort: true,
 		totalProperty:'page.totalElements',
 		storeId : 'myStore',
-		idProperty : 'actor_id',
+		idProperty : 'actorId',
 		root : 'page.content',
         writer: {
             type: 'json',
@@ -20,10 +20,10 @@ actorStore = new Ext.data.JsonStore({
 			}
 		}),
 		fields : [ {
-			name : 'actor_id',
+			name : 'actorId',
 			type : 'int'
-		}, 'first_name', 'last_name', {
-			name : 'last_update',
+		}, 'firstName', 'lastName', {
+			name : 'lastUpdate',
 			type : 'date'
 		} ]		
 	});

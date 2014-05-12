@@ -1,5 +1,6 @@
 package com.billherry.mvc.domain;
 
+
 import java.sql.Date;
 
 import javax.persistence.Access;
@@ -19,51 +20,51 @@ public class Actor {
 	@Id
 	@Column(name = "actor_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long actor_id;
+	private Long actorId;
 	
 	@Column(name = "first_name", unique = false, nullable = false, length = 50)
-	private String first_name;
+	private String firstName;
 	
 	@Column(name = "last_name", unique = false, nullable = false, length = 50)
-	private String last_name;
+	private String lastName;
 	
 	@Column(name = "last_update", unique = false, nullable = false, length = 50)
-	private Date last_update;
+	private Date lastUpdate;
 	
+	public Date getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(Date lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+
 	@Override
 	public String toString() {		
-		return String.format("id:%s , Name: %s %s", this.actor_id,this.first_name,this.last_name);
+		return String.format("id:%s , Name: %s %s", this.actorId, this.firstName, this.lastName);
 	}
 
-	public Long getActor_id() {
-		return actor_id;
+	public Long getActorId() {
+		return actorId;
 	}
 
-	public void setActor_id(Long actor_id) {
-		this.actor_id = actor_id;
+	public void setActorId(Long actorId) {
+		this.actorId = actorId;
 	}
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
-
-	public Date getLast_update() {
-		return last_update;
-	}
-
-	public void setLast_update(Date last_update) {
-		this.last_update = last_update;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 }

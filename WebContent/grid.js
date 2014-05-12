@@ -11,20 +11,20 @@ var actorGrid = new Ext.grid.GridPanel({
 			sortable : true
 		},
 		columns : [ {
-			id : 'actor_id',
+			id : 'actorId',
 			header : 'ID',
 			width : 30,
 			sortable : true,
-			dataIndex : 'actor_id'
+			dataIndex : 'actorId'
 		}, {
 			header : 'First Name',
-			dataIndex : 'first_name'
+			dataIndex : 'firstName'
 		}, {
 			header : 'Last Name',
-			dataIndex : 'last_name'
+			dataIndex : 'lastName'
 		}, {
 			header : 'Last Updated',
-			dataIndex : 'last_update',
+			dataIndex : 'lastUpdate',
 			xtype : 'datecolumn',
 			format : 'Y.M.d'
 		},{

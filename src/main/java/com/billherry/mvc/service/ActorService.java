@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,12 +18,19 @@ public class ActorService {
 	Logger log = LoggerFactory.getLogger(ActorService.class);
 	
 	@Autowired
-	private ActorRepository repository;	
+	private ActorRepository repository;
 	
 	@Transactional(readOnly=true)
-	public Page<Actor> findAll(int start, int limit) {
-		Pageable page = new PageRequest(start / limit, limit);
-		return repository.findAll(page);
+	public Page<Actor> findAll(int start, int limit, String dir, String sortBy) {
+		Pageable page;
+		if (dir != null && !dir.isEmpty()) {
+			Sort sort = new Sort(Sort.Direction.fromString(dir), sortBy);
+			page = new PageRequest(start / limit, limit, sort);
+		} else {
+			page = new PageRequest(start / limit, limit);
+		}
+		Page<Actor> pageResult = repository.findAll(page);
+		return pageResult;
 	}
 	
 	@Transactional
