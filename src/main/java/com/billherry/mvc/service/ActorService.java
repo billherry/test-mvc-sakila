@@ -1,12 +1,11 @@
 package com.billherry.mvc.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +20,9 @@ public class ActorService {
 	private ActorRepository repository;	
 	
 	@Transactional(readOnly=true)
-	public Map<String,Object> findAll(){
-		System.out.println(String.format("TOTAL ITEM: %s",repository.count()));
-		Map<String,Object> findAllMap = new HashMap<String,Object>();
-		findAllMap.put("Actors", repository.findAll());
-		findAllMap.put("Total",repository.count());		
-		return findAllMap;
+	public Page<Actor> findAll(int start, int limit) {
+		Pageable page = new PageRequest(start / limit, limit);
+		return repository.findAll(page);
 	}
 	
 	@Transactional

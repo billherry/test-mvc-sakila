@@ -1,10 +1,10 @@
 actorStore = new Ext.data.JsonStore({
 		autoDestroy : true,
 		remoteSort: true,
-		totalProperty:'Total',
+		totalProperty:'page.totalElements',
 		storeId : 'myStore',
 		idProperty : 'actor_id',
-		root : 'Actors',
+		root : 'page.content',
         writer: {
             type: 'json',
             writeAllFields: false,

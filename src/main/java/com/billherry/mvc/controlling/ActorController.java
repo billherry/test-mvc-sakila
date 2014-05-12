@@ -1,13 +1,9 @@
 package com.billherry.mvc.controlling;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,14 +15,15 @@ import com.billherry.mvc.service.ActorService;
 @RequestMapping("/actor/*")
 public class ActorController {
 	
+
+
 	@Autowired
 	private ActorService service;
 	
-	
-	
-	@RequestMapping(value ="select")
-	public Map<String,Object>  findAll(){		
-		return service.findAll();
+	@RequestMapping(value = "select")
+	public Page<Actor> findAll(@RequestParam("start") Integer start, @RequestParam("limit") Integer limit) {
+		System.out.println("Start: " + start + " Limit: " + limit);
+		return service.findAll(start, limit);
 	}
 	
 	@RequestMapping("create")
