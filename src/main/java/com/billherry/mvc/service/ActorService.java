@@ -24,6 +24,7 @@ public class ActorService {
 	public Page<Actor> findAll(int start, int limit, String dir, String sortBy) {
 		Pageable page;
 		if (dir != null && !dir.isEmpty()) {
+			System.out.println(String.format("%s , %s", dir, sortBy));
 			Sort sort = new Sort(Sort.Direction.fromString(dir), sortBy);
 			page = new PageRequest(start / limit, limit, sort);
 		} else {
