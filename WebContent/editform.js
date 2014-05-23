@@ -1,27 +1,31 @@
 actorForm = new Ext.form.FormPanel({
 	title : 'Edit Actors',
 	id : 'edit-form',
+	load:({add:true}),
 	layout : 'form',
 	region : 'east',
 	split : true,
 	width : 285,
 	record : null,
-	setRecord : function(rec) {
-		this.record = rec;
-		this.getForm().loadRecord(this.record);		
-	},
 	buttons : [ {
 		xtype : 'button',
 		text : 'Modify',
-		handler : function (){
-	        if (actorForm.getForm().isValid()) {
-	        	actorForm.getForm().updateRecord(actorForm.record);
-	        }
+		handler : function() {
+			if (actorForm.getForm().isValid()) {
+				actorForm.getForm().updateRecord(actorForm.record);
+			}
 			actorForm.getForm().reset();
-	        actorGrid.getBottomToolbar().doRefresh();
+			actorGrid.getBottomToolbar().doRefresh();
 		},
 		scope : this
-	} ],
+	}, {
+		xtype : 'button',
+		text : 'New',
+		handler : function() {
+			actorForm.onCreate();
+		},
+		scope : this
+	}  ],
 	items : [ {
 		layout : 'form',
 		items : [ {
@@ -29,21 +33,28 @@ actorForm = new Ext.form.FormPanel({
 			defaultType : 'textfield',
 			items : [ {
 				xtype : 'numberfield',
-				name : 'actor_id',
+				name : 'actorId',
 				fieldLabel : 'Id'
 			}, {
 				fieldLabel : 'FirstName',
-				name : 'first_name'
+				name : 'firstName'
 
 			}, {
 				fieldLabel : 'LastName',
-				name : 'last_name'
+				name : 'lastName'
 			}, {
 				xtype : 'datefield',
 				fieldLabel : 'LastUpdate',
-				name : 'last_update',
+				name : 'lastUpdate',
 				format : 'Y.M.d'
 			} ]
 		} ]
 	} ],
+	onCreate : function(btn,ev){
+		if(!actorForm.getForm().isValid()){
+			return false;
+		}
+		actorForm.fireEvent('create',actorForm,actorForm.getForm().getValues());
+		actorForm.getForm().reset();
+	}
 });

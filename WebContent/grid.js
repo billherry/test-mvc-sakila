@@ -5,6 +5,7 @@ var actorGrid = new Ext.grid.GridPanel({
 	region:'center',
 	plugins: [actorFilter],
 	store : actorStore,
+	iconCls: 'icon-grid',
 	colModel : new Ext.grid.ColumnModel({
 		defaults : {
 			width : 100,
@@ -34,7 +35,9 @@ var actorGrid = new Ext.grid.GridPanel({
 				tooltip : 'Edit',
 				handler : function(grid, rowIndex, colIndex) {
 					var rec = actorStore.getAt(rowIndex);
-					actorForm.setRecord(rec);
+					window.console.log(rec);
+					window.console.log(actorForm.getId());
+					actorForm.getForm().loadRecord(rec);
 				}
 			},{
 				icon : 'images/cross.png',

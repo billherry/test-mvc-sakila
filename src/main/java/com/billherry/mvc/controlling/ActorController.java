@@ -14,8 +14,6 @@ import com.billherry.mvc.service.ActorService;
 @Controller
 @RequestMapping("/actor/*")
 public class ActorController {
-	
-
 
 	@Autowired
 	private ActorService service;
